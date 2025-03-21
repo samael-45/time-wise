@@ -29,6 +29,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: build/app/outputs/flutter-apk/app-release.apk
-        asset_name: TimeWise.apk 
+        name: TimeWise.apk 
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
