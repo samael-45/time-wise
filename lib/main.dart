@@ -56,7 +56,7 @@ class HomeScreen extends HookWidget {
         final appsData = await Future.wait(
           (result['topApps'] as List<dynamic>).map((app) async {
             String packageName = app['packageName'];
-            var appData = await InstalledApps.getAppInfo(packageName);
+            var appData = await InstalledApps.getAppInfo(packageName, null);
             var iconData = appData?.icon;
             return {"packageName": packageName, "icon": iconData};
           }),

@@ -1,4 +1,4 @@
-package com.example.myapp
+package com.samael.timewise
 
 import android.app.usage.UsageEvents
 import android.app.usage.UsageStats
