@@ -1,0 +1,35 @@
+name:  Android Build and Release
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    name: Build and Release Android APK
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+        flutter-version-file: pubspec.yaml
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build APK (For Android)
+      run: flutter build apk --release
+
+    - name: Upload APK to GitHub Release (For Android)
+      if: github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v2
+      with:
+        files: build/app/outputs/flutter-apk/app-release.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
